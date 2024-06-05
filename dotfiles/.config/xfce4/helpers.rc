@@ -1,0 +1,5 @@
+FileManager=Thunar
+TerminalEmulator=kitty
+TerminalEmulatorDismissed=true
+WebBrowser=brave
+MailReader=brave
