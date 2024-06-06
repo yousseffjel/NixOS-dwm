@@ -1,35 +1,12 @@
 { config, pkgs, ... }:
+let
+  sensitiveAliases = import ./server.nix;
+in
 {
   users.users.yusuf.isNormalUser = true;
 
   home-manager.users.yusuf = { pkgs, ... }: {
     home.packages = [ pkgs.atool pkgs.httpie ];
-	  gtk = {
-	  	enable = true;
-	  	cursorTheme = {
-	  		name = "macOS-Monterey";
-	  		package = pkgs.apple-cursor;
-	  	};
-	  	iconTheme = {
-	  		name = "Papirus";
-	  		package = pkgs.papirus-icon-theme;
-	  	};
-	  	theme = {
-	  		name = "Catppuccin-Mocha-Blue";
-	  		package = pkgs.catppuccin-gtk;
-	  	};
-	  	font = {
-	  		name = "Red Hat Display 10";
-	  		package = pkgs.redhat-official-fonts;
-	  	};
-	  	gtk3.extraConfig = {
-	  		gtk-application-prefer-dark-theme=1;
-	  		gtk-xft-antialias = 1;
-	  		gtk-xft-hinting = 1;
-	  		gtk-xft-hintstyle = "hintfull";
-	  		gtk-xft-rgba = "rgb";
-	  	};
-	  };
     programs.kitty = {
 	  	enable = true;
 	  	font = {
@@ -78,7 +55,7 @@
 			zstyle :compinstall filename '/home/yusuf/.config/zsh/.zshrc'
 		'';
 	};
-	home.shellAliases = {
+	home.shellAliases = (import ./server.nix) // {
 	l = "eza -l --icons";
  	ls = "eza -1 --icons";
  	ll = "eza -la --icons";
@@ -140,11 +117,6 @@
 	treed = "tree -CAFd";
 	mountedinfo = "df -hT";
 	#grep = "/usr/bin/grep $GREP_OPTIONS";
-
-	# Alias's for server
-	server = "ssh -i ~/.ssh/server_key.pem yusuf@20.199.16.140";
-	mountserver = "sshfs -o IdentityFile=/home/yusuf/.ssh/id_rsa,allow_other,reconnect,ServerAliveInterval=15 yusuf@20.199.16.140:/mnt /home/yusuf/server";
-	umountserver = "fusermount3 -u /home/yusuf/server";
 	};
 	programs.zoxide = {
 	enable = true;

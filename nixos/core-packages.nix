@@ -63,7 +63,6 @@
     hblock
     hw-probe
     inkscape
-    insyncun
     kitty
     lm_sensors
     lollypop
@@ -84,5 +83,12 @@
     wget
     widevine-cdm
     xorg.xkill
+    betterlockscreen
+    dunst
+    xcolor
+    brightnessctl
+    pamixer
+    playerctl
+    sshfs
   ];
 }

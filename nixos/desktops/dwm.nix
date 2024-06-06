@@ -9,13 +9,13 @@
   services.xserver.windowManager.dwm.enable = true;
   nixpkgs.overlays = [
   (final: prev: {
-    dwm = prev.dwm.overrideAttrs (old: { src = /home/yusuf/suckless/dwm ;});
+    dwm = prev.dwm.overrideAttrs (old: { src = /home/yusuf/Documents/GitHub/suckless/dwm ;});
   })
 	(final: prev: {
-	 dmenu = prev.dmenu.overrideAttrs (old: { src = /home/yusuf/suckless/dmenu ;});
+	 dmenu = prev.dmenu.overrideAttrs (old: { src = /home/yusuf/Documents/GitHub/suckless/dmenu ;});
 	 })
 	(final: prev: {
-	 slstatus = prev.slstatus.overrideAttrs (old: { src = /home/yusuf/suckless/slstatus ;});
+	 slstatus = prev.slstatus.overrideAttrs (old: { src = /home/yusuf/Documents/GitHub/suckless/slstatus ;});
 	 })
   ];
 

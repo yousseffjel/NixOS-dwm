@@ -5,6 +5,10 @@
 
 { config, pkgs, ... }:
 
+let
+home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
+in
+
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -12,9 +16,9 @@
       ./core-packages.nix
       ./desktop-packages.nix
       ./home-manager.nix
-      <home-manager/nixos>
+      (import "${home-manager}/nixos")
       ./env-vars.nix
-      ./virtualbox.nix
+      #./virtualbox.nix
       #./desktops/hyprland.nix
       ./desktops/dwm.nix
     ];
@@ -24,7 +28,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Swappiness
-  boot.kernel.sysctl = { "vm.swappiness" = 10;};
+  # boot.kernel.sysctl = { "vm.swappiness" = 10;};
 
   # Kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -63,12 +67,19 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
+  environment.etc."fuse.conf".text = ''
+    user_allow_other
+  '';
+  security.wrappers = {
+    fusermount.source  = "${pkgs.fuse}/bin/fusermount";
+  };
+
   # Disabling X11 - go for startx
   #services.xserver.autorun = false;
   #services.xserver.displayManager.startx.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.displayManager.lightdm.enable = true;
   #services.xserver.desktopManager.plasma5.enable = true;
   # for wayland dark theme  
   #programs.dconf.enable = true;
@@ -273,7 +284,7 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  networking.firewall.enable = false;
+  # networking.firewall.enable = false;
 
 	environment.pathsToLink = [ "/share/zsh" ];
 
