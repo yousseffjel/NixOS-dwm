@@ -73,7 +73,7 @@
     networkmanagerapplet
     nixos-generators
     nomacs
-    qbittorrent-qt5
+    qbittorrent
     rxvt-unicode
     spotify
     tree
@@ -90,5 +90,7 @@
     pamixer
     playerctl
     sshfs
+    xss-lock
+    notion
   ];
 }

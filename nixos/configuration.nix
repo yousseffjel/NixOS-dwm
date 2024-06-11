@@ -19,16 +19,12 @@ in
       (import "${home-manager}/nixos")
       ./env-vars.nix
       #./virtualbox.nix
-      #./desktops/hyprland.nix
       ./desktops/dwm.nix
     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  # Swappiness
-  # boot.kernel.sysctl = { "vm.swappiness" = 10;};
 
   # Kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -84,29 +80,6 @@ in
   # for wayland dark theme  
   #programs.dconf.enable = true;
 
-  # https://mynixos.com/options/services.xserver.desktopManager
-  
-  #services.xserver.desktopManager.budgie
-  #services.xserver.desktopManager.cde
-  #services.xserver.desktopManager.cinnamon
-  #services.xserver.desktopManager.deepin
-  #services.xserver.desktopManager.enlightenment
-  #services.xserver.desktopManager.gnome
-  #services.xserver.desktopManager.kodi
-  #services.xserver.desktopManager.lumina
-  #services.xserver.desktopManager.lxqt
-  #services.xserver.desktopManager.mate
-  #services.xserver.desktopManager.pantheon
-  #services.xserver.desktopManager.phosh
-  #services.xserver.desktopManager.plasma
-  #services.xserver.desktopManager.retroarch
-  #services.xserver.desktopManager.surf-display
-  #services.xserver.desktopManager.wallpaper
-  #services.xserver.desktopManager.xfce
-  #services.xserver.desktopManager.xterm
-
-  #https://mynixos.com/options/services.xserver.windowManager
-
   # Configure keymap in X11
   services.xserver = {
     libinput = {
@@ -119,14 +92,6 @@ in
     layout = "us";
     xkbVariant = "";
   };
-
-  # Select internationalisation properties.
-  # console = {
-  # keyMap = "be-latin1";
-  #  packages=[ pkgs.terminus_font ];
-  #  font="${pkgs.terminus_font}/share/consolefonts/ter-i22b.psf.gz";
-  #  #useXkbConfig = true; # use xkbOptions in tty.
-  #};
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -174,11 +139,10 @@ in
 
   # Enable automatic login for the user.
   # services.xserver.displayManager.autoLogin.enable = true;
-  # services.xserver.displayManager.autoLogin.user = "erik";
+  # services.xserver.displayManager.autoLogin.user = "yusuf";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  # nixpkgs.config.nvidia.acceptLicense = true;
   
   #nix.settings.experimental-features = [ "nix-command" "flakes" ];
   #nix.settings.auto-optimise-store = true;
@@ -203,18 +167,6 @@ in
     interval = "hourly";
   };
 
-  #services.avahi = {
-  #  enable = true;
-  #  nssmdns = true;
-  #  #nssmdns4 = true;
-  #  ipv4 = true;
-  #  ipv6 = true;
-  #  publish = {
-	#	  enable = true;
-  #    workstation = true;
-  #	};
-  #};
-
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
   hardware.bluetooth.settings = {
@@ -223,14 +175,6 @@ in
       Experimental = true;
     };
   };
-
-  # programs.bash = {
-	#enableCompletion = true;
-  #  shellInit = ''
-  #    . ~/.bashrc-personal
-  #  '';
-  # };
-
   #programs.steam.enable =  true;
 
   services.xserver.displayManager.setupCommands = ''

@@ -40,12 +40,16 @@ echo "################################################################"
 tput sgr0
 echo
 
-if [[ ! -d $HOME/suckless ]]; then
-    cd /home/yusuf && git clone https://github.com/yousseffjel/suckless.git
+if [[ ! -d $HOME/Documents/GitHub/ ]]; then
+    mkdir -p $HOME/Documents/GitHub/
 fi
 
-if [[ ! -d $HOME/bin ]]; then
-    cd /home/yusuf && git clone https://github.com/yousseffjel/bin.git
+if [[ ! -d $HOME/Documents/GitHub//suckless ]]; then
+    cd $HOME/Documents/GitHub/ && git clone https://github.com/yousseffjel/suckless.git
+fi
+
+if [[ ! -d $HOME/Documents/GitHub/bin ]]; then
+    cd $HOME/Documents/GitHub/ && git clone https://github.com/yousseffjel/bin.git
 fi
 
 

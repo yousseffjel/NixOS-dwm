@@ -126,7 +126,7 @@ in
 	};
 	xresources.properties = {
 		"Xcursor.theme" = "macOS-Monterey";
-		"Xft.dpi" = "70";
+		"Xft.dpi" = "80";
 	};
 	xdg.userDirs = {
 		enable = true;

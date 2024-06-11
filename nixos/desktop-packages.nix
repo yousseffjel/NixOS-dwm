@@ -4,8 +4,6 @@
 
 { config, pkgs, ... }:
 
-# Plasma + Awesome, Bspwm, i3wm and more
-
 {
   environment.systemPackages = with pkgs; [
     arc-kde-theme

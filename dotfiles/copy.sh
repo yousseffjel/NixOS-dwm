@@ -40,8 +40,8 @@ echo "################################################################"
 tput sgr0
 echo
 
-cp -rf .config ~
-cp -rf .local ~
+cp -rf .config/* ~/.config/
+cp -rf .local/* ~/.local/
 cp .Xresources ~
 cp .x* ~
 

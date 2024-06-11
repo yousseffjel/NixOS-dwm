@@ -19,7 +19,7 @@
     XDG_STATE_HOME  = "$HOME/.local/state";
 
     # Not officially in the specification
-    XDG_BIN_HOME    = "$HOME/bin";
+    XDG_BIN_HOME    = "$HOME/Documents/GitHub/bin";
     PATH = [ 
       "${XDG_BIN_HOME}"
     ];
