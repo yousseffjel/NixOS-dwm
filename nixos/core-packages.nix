@@ -91,6 +91,18 @@
     playerctl
     sshfs
     xss-lock
-    notion
+    firefox-devedition
+    zip
+    ark
+    gnome.gpaste
+    xclip
+    xdotool
+    coreutils-prefixed
+    qrencode
+    gnome.zenity
+    onlyoffice-bin
+    jetbrains.webstorm
+    figma-linux
+    libsForQt5.kdenlive
   ];
 }

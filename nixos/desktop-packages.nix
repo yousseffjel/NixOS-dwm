@@ -36,5 +36,6 @@
     xorg.libXft
     xorg.libXinerama
     yad
+    peazip
 ];
 }

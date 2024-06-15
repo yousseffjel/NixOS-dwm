@@ -6,7 +6,7 @@
 { config, pkgs, ... }:
 
 let
-home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
+home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
 in
 
 {
@@ -19,6 +19,7 @@ in
       (import "${home-manager}/nixos")
       ./env-vars.nix
       #./virtualbox.nix
+      #./desktops/hyprland.nix
       ./desktops/dwm.nix
     ];
 
@@ -175,6 +176,8 @@ in
       Experimental = true;
     };
   };
+  services.blueman.enable = true; # enables the Blueman Bluetooth manager
+
   #programs.steam.enable =  true;
 
   services.xserver.displayManager.setupCommands = ''
@@ -186,7 +189,7 @@ in
 
   # Fonts.
 	fonts.fontDir.enable = true;
-	fonts.fonts = with pkgs; [
+	fonts.packages = with pkgs; [
 		noto-fonts
 			noto-fonts-cjk
 			noto-fonts-emoji
@@ -224,6 +227,23 @@ in
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  services.tlp = {
+      enable = true;
+      settings = {
+        CPU_SCALING_GOVERNOR_ON_AC = "performance";
+        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+        CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+
+        CPU_MIN_PERF_ON_AC = 0;
+        CPU_MAX_PERF_ON_AC = 100;
+        CPU_MIN_PERF_ON_BAT = 0;
+        CPU_MAX_PERF_ON_BAT = 20;
+
+      };
+};
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -244,7 +264,7 @@ in
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Did you read the comment?
 
  nixpkgs.config.permittedInsecurePackages = [
 	"openssl-1.1.1w" "electron-19.1.9"
